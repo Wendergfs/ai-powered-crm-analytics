@@ -1,0 +1,46 @@
+@model AIClientManager.Models.Client
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Client Form";
+}
+
+<h2 class="mb-4">Client Form</h2>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <div class="alert alert-info">
+            <i class="fa fa-info-circle"></i>
+            Client priority is calculated automatically from notes.
+        </div>
+
+        <form asp-action="Create" asp-controller="Clients" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="mb-3">
+                <label>Name</label>
+                <input name="Name" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label>Email</label>
+                <input name="Email" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label>Company</label>
+                <input name="Company" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label>Notes</label>
+                <textarea name="Notes" class="form-control"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Save
+            </button>
+        </form>
+
+    </div>
+</div>

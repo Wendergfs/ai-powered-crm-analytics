@@ -1,0 +1,29 @@
+@model AIClientManager.Models.LoginViewModel
+
+<h2>Login</h2>
+
+<form asp-action="Login" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Password</label>
+        <input asp-for="Password" type="password" class="form-control" />
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="RememberMe" class="form-check-input" />
+        <label class="form-check-label">Remember me</label>
+    </div>
+
+    <button class="btn btn-success">Login</button>
+    <div class="mt-3 text-center">
+    <span>No account yet?</span>
+    <a href="/Account/Register">Create one</a>
+    </div>
+
+</form>

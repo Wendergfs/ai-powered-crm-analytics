@@ -1,0 +1,85 @@
+@model AIClientManager.Models.Client
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Edit Client";
+}
+
+
+<h2 class="mb-4">Client Form</h2>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <div class="alert alert-info">
+            <i class="fa fa-info-circle"></i>
+            Client priority is calculated automatically from notes.
+        </div>
+
+        <form asp-action="Edit"
+              asp-controller="Clients"
+              method="post"
+              class="row g-3 needs-validation">
+
+            @Html.AntiForgeryToken()
+
+            <!-- ID -->
+            <input type="hidden" asp-for="Id" />
+
+            <!-- Name -->
+            <div class="col-md-6">
+                <label class="form-label">Name</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    <input asp-for="Name" class="form-control" />
+
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    <input asp-for="Email" type="email" class="form-control" />
+                </div>
+            </div>
+
+            <!-- Company -->
+            <div class="col-md-6">
+                <label class="form-label">Company</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa fa-building"></i></span>
+                    <input asp-for="Company" class="form-control" />
+                </div>
+            </div>
+
+            <!-- Priority (readonly - AI) -->
+            <div class="col-md-6">
+                <label class="form-label">Priority</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa fa-flag"></i></span>
+                    <input asp-for="Priority" class="form-control" readonly />
+                </div>
+            </div>
+
+            <!-- Notes -->
+            <div class="col-12">
+                <label class="form-label">Notes</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa fa-comment"></i></span>
+                    <textarea asp-for="Notes" class="form-control" rows="4"></textarea>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="col-12 text-end">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-save"></i> Save
+                </button>
+                <a href="/Clients" class="btn btn-secondary">Cancel</a>
+            </div>
+
+        </form>
+    </div>
+</div>

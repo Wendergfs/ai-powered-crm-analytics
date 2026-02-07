@@ -1,0 +1,171 @@
+@model List<AIClientManager.Models.Client>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2 class="mb-4">AI Dashboard</h2>
+<a class="btn btn-outline-secondary mb-3"
+   href="/Dashboard/ExportDashboardPdf">
+    <i class="fa fa-file-pdf"></i> Export Dashboard PDF
+</a>
+
+
+<!-- ======================
+   KPI CARDS
+====================== -->
+
+<div class="row g-3 mb-4">
+
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <i class="fa fa-users fa-2x mb-2 text-primary"></i>
+                <h6>Total Clients</h6>
+                <h3>@ViewBag.Total</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center border-danger">
+            <div class="card-body text-danger">
+                <i class="fa fa-fire fa-2x mb-2"></i>
+                <h6>High Priority</h6>
+                <h3>@ViewBag.High</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center border-warning">
+            <div class="card-body text-warning">
+                <i class="fa fa-clock fa-2x mb-2"></i>
+                <h6>Medium</h6>
+                <h3>@ViewBag.Medium</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center border-success">
+            <div class="card-body text-success">
+                <i class="fa fa-check fa-2x mb-2"></i>
+                <h6>Low</h6>
+                <h3>@ViewBag.Low</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ======================
+   CHARTS
+====================== -->
+
+<div class="row g-4 mb-4">
+
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="mb-3">Priority Distribution</h5>
+                <canvas id="priorityChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="mb-3">Score Distribution</h5>
+                <canvas id="scoreChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ======================
+   LAST CLIENTS
+====================== -->
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5>Last Clients</h5>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <td>@c.Name</td>
+                    <td>@c.Company</td>
+                    <td>
+                        <span class="badge 
+                            @(c.Priority == "High" ? "bg-danger" :
+                              c.Priority == "Medium" ? "bg-warning text-dark" :
+                              "bg-success")">
+                            @c.Priority
+                        </span>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="alert alert-secondary mt-3">
+    <i class="fa fa-lightbulb"></i>
+    Tip: High priority clients require immediate follow-up.
+</div>
+
+<!-- ======================
+   SCRIPTS
+====================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+fetch('/Dashboard/Stats')
+    .then(res => res.json())
+    .then(data => {
+
+        // PIE CHART - PRIORITIES
+        new Chart(document.getElementById('priorityChart'), {
+            type: 'pie',
+            data: {
+                labels: ['High', 'Medium', 'Low'],
+                datasets: [{
+                    data: [
+                        data.priorities.high,
+                        data.priorities.medium,
+                        data.priorities.low
+                    ]
+                }]
+            }
+        });
+
+        // BAR CHART - SCORES
+        new Chart(document.getElementById('scoreChart'), {
+            type: 'bar',
+            data: {
+                labels: data.scores.map((_, i) => `Client ${i + 1}`),
+                datasets: [{
+                    label: 'Score',
+                    data: data.scores
+                }]
+            }
+        });
+
+    });
+</script>

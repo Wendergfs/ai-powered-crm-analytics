@@ -1,0 +1,90 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+/* =========================
+   CLIENTS PAGE STYLES
+========================= */
+
+.clients-table th {
+  font-weight: 600;
+}
+
+.clients-table td {
+  vertical-align: middle;
+}
+
+.badge {
+  font-size: 0.85rem;
+  padding: 0.5em 0.75em;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.btn {
+  border-radius: 6px;
+}
+.input-group-text {
+  background-color: #f8f9fa;
+}
+@media (max-width: 768px) {
+  .card {
+      border-radius: 0;
+  }
+  h2 {
+      font-size: 1.4rem;
+  }
+}
+.dark-mode {
+  background-color: #121212;
+  color: #eaeaea;
+}
+
+.dark-mode .card,
+.dark-mode .sidebar,
+.dark-mode nav,
+.dark-mode .table {
+  background-color: #1e1e1e !important;
+  color: #fff;
+}
+
+.dark-mode .input-group-text {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+.card {
+  border-radius: 12px;
+}
+
+.input-group-text {
+  min-width: 45px;
+  justify-content: center;
+}
+
+.table thead {
+  letter-spacing: 0.03em;
+}
+
+.alert {
+  border-radius: 10px;
+}

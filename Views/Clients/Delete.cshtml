@@ -1,0 +1,12 @@
+@model AIClientManager.Models.Client
+
+<h1>Delete Client</h1>
+
+<form method="post">
+    @Html.AntiForgeryToken()
+
+    <p>Delete <strong>@Model.Name</strong>?</p>
+
+    <button type="submit" class="btn btn-danger">Confirm</button>
+    <a href="/Clients" class="btn btn-secondary">Cancel</a>
+</form>
