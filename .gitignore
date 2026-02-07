@@ -1,0 +1,19 @@
+bin/
+obj/
+.vs/
+
+# User secrets / configs
+appsettings.json
+.env
+
+# SQL Server local files
+*.mdf
+*.ldf
+
+# Rider / VS
+*.user
+*.suo
+
+# OS files
+.DS_Store
+Thumbs.db
