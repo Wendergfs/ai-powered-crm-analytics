@@ -150,5 +150,5 @@ This project is open source. See [LICENSE](LICENSE) for details.
 ---
 
 <div align="center">
-  Made with ❤️ by <a href="https://github.com/Wendergfs">Wendergfs</a>
+  Made by <a href="https://github.com/Wendergfs">Mohamed Aziz Gafsi</a>
 </div>
